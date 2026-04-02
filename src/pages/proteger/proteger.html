@@ -1,0 +1,177 @@
+<div class="max-w-2xl mx-auto px-4 sm:px-6 py-10">
+
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Sécuriser un PDF</h1>
+    <p class="text-gray-500">Choisissez les restrictions à appliquer puis téléchargez votre PDF protégé.</p>
+  </div>
+
+  @if (erreur()) {
+    <div class="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg text-red-700 text-sm" role="alert">
+      ⚠ {{ erreur() }}
+    </div>
+  }
+
+  <!-- Zone upload -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-5">
+    <h2 class="text-base font-semibold text-gray-800 mb-4">📁 Document PDF</h2>
+
+    <div
+      class="border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all"
+      [class.border-green-500]="isDragOver() || fichierSelectionne"
+      [class.bg-green-50]="isDragOver() || fichierSelectionne"
+      [class.border-gray-300]="!isDragOver() && !fichierSelectionne"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave()"
+      (drop)="onDrop($event)"
+      (click)="fileInput.click()"
+      role="button"
+      tabindex="0"
+    >
+      <input #fileInput type="file" accept=".pdf" (change)="onFileSelected($event)" class="hidden" />
+
+      @if (fichierSelectionne) {
+        <div class="flex items-center justify-between text-left" (click)="$event.stopPropagation()">
+          <div class="flex items-center gap-3">
+            <span class="text-3xl">📄</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm break-all">{{ fichierSelectionne.name }}</p>
+              <p class="text-gray-400 text-xs mt-0.5">{{ tailleFichier }}</p>
+            </div>
+          </div>
+          <button
+            class="ml-4 w-8 h-8 rounded-full border border-gray-200 text-gray-400 hover:bg-red-50 hover:border-red-300 hover:text-red-500 transition-all flex items-center justify-center text-sm"
+            (click)="supprimerFichier()"
+            title="Supprimer"
+          >✕</button>
+        </div>
+      } @else {
+        <div>
+          <span class="text-4xl block mb-3">⬆</span>
+          <p class="text-gray-600 font-medium mb-1">Glissez votre PDF ici ou <span class="text-green-600 font-semibold">cliquez pour parcourir</span></p>
+          <p class="text-gray-400 text-sm">PDF uniquement — 20 Mo maximum</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Restrictions -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-5">
+    <h2 class="text-base font-semibold text-gray-800 mb-4">🚫 Restrictions à appliquer</h2>
+    <div class="space-y-3">
+
+      <label class="flex items-start gap-3 cursor-pointer group">
+        <input type="checkbox" [(ngModel)]="interdireCopie"
+               class="mt-1 w-4 h-4 accent-green-600 cursor-pointer" />
+        <div>
+          <span class="font-medium text-gray-800 group-hover:text-green-700 transition-colors">Interdire la copie du contenu</span>
+          <p class="text-gray-400 text-xs mt-0.5">Empêche de copier le texte et les images du document</p>
+        </div>
+      </label>
+
+      <label class="flex items-start gap-3 cursor-pointer group">
+        <input type="checkbox" [(ngModel)]="interdireImpression"
+               class="mt-1 w-4 h-4 accent-green-600 cursor-pointer" />
+        <div>
+          <span class="font-medium text-gray-800 group-hover:text-green-700 transition-colors">Interdire l'impression</span>
+          <p class="text-gray-400 text-xs mt-0.5">Le document ne peut pas être imprimé</p>
+        </div>
+      </label>
+
+      <label class="flex items-start gap-3 cursor-pointer group">
+        <input type="checkbox" [(ngModel)]="interdireModification"
+               class="mt-1 w-4 h-4 accent-green-600 cursor-pointer" />
+        <div>
+          <span class="font-medium text-gray-800 group-hover:text-green-700 transition-colors">Interdire les modifications</span>
+          <p class="text-gray-400 text-xs mt-0.5">Le contenu du document ne peut pas être modifié</p>
+        </div>
+      </label>
+
+      <label class="flex items-start gap-3 cursor-pointer group">
+        <input type="checkbox" [(ngModel)]="interdireAnnotations"
+               class="mt-1 w-4 h-4 accent-green-600 cursor-pointer" />
+        <div>
+          <span class="font-medium text-gray-800 group-hover:text-green-700 transition-colors">Interdire les annotations</span>
+          <p class="text-gray-400 text-xs mt-0.5">Aucun commentaire ni annotation ne peut être ajouté</p>
+        </div>
+      </label>
+
+    </div>
+  </div>
+
+  <!-- Mot de passe -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-5">
+    <h2 class="text-base font-semibold text-gray-800 mb-1">🔑 Mot de passe d'ouverture <span class="text-gray-400 font-normal text-sm">(optionnel)</span></h2>
+    <p class="text-gray-400 text-xs mb-4">Si défini, le document ne pourra être ouvert qu'avec ce mot de passe</p>
+
+    <div class="relative">
+      <input
+        [type]="afficherMotDePasse ? 'text' : 'password'"
+        [(ngModel)]="motDePasseOuverture"
+        placeholder="Minimum 4 caractères"
+        class="w-full px-4 py-2.5 pr-12 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-green-500 bg-gray-50 focus:bg-white transition-colors"
+      />
+      <button
+        type="button"
+        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-sm"
+        (click)="afficherMotDePasse = !afficherMotDePasse"
+      >{{ afficherMotDePasse ? '🙈' : '👁' }}</button>
+    </div>
+  </div>
+
+  <!-- Niveau de chiffrement -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+    <h2 class="text-base font-semibold text-gray-800 mb-4">🛡️ Niveau de chiffrement</h2>
+    <div class="grid grid-cols-2 gap-3">
+
+      <label class="relative cursor-pointer">
+        <input type="radio" [(ngModel)]="chiffrement" value="aes256" class="sr-only" />
+        <div class="border-2 rounded-lg p-4 transition-all text-center"
+             [class.border-green-500]="chiffrement === 'aes256'"
+             [class.bg-green-50]="chiffrement === 'aes256'"
+             [class.border-gray-200]="chiffrement !== 'aes256'">
+          <span class="block font-bold text-gray-800 mb-1">AES-256</span>
+          <span class="text-xs text-gray-500">Recommandé — Chiffrement militaire</span>
+          @if (chiffrement === 'aes256') {
+            <span class="block mt-2 text-xs text-green-600 font-semibold">✓ Sélectionné</span>
+          }
+        </div>
+      </label>
+
+      <label class="relative cursor-pointer">
+        <input type="radio" [(ngModel)]="chiffrement" value="aes128" class="sr-only" />
+        <div class="border-2 rounded-lg p-4 transition-all text-center"
+             [class.border-green-500]="chiffrement === 'aes128'"
+             [class.bg-green-50]="chiffrement === 'aes128'"
+             [class.border-gray-200]="chiffrement !== 'aes128'">
+          <span class="block font-bold text-gray-800 mb-1">AES-128</span>
+          <span class="text-xs text-gray-500">Standard — Compatible anciens lecteurs</span>
+          @if (chiffrement === 'aes128') {
+            <span class="block mt-2 text-xs text-green-600 font-semibold">✓ Sélectionné</span>
+          }
+        </div>
+      </label>
+
+    </div>
+  </div>
+
+  <!-- Bouton -->
+  <button
+    class="w-full py-4 rounded-xl font-semibold text-lg transition-all"
+    [class.bg-green-600]="!chargement()"
+    [class.hover:bg-green-700]="!chargement()"
+    [class.text-white]="!chargement()"
+    [class.bg-gray-300]="chargement()"
+    [class.text-gray-500]="chargement()"
+    [class.cursor-not-allowed]="chargement()"
+    [disabled]="chargement()"
+    (click)="securiser()"
+  >
+    @if (chargement()) {
+      ⏳ Sécurisation en cours...
+    } @else {
+      🔐 Sécuriser et télécharger le PDF
+    }
+  </button>
+  <p class="text-center text-gray-400 text-xs mt-3">Le fichier sera supprimé de nos serveurs immédiatement après traitement</p>
+
+</div>
