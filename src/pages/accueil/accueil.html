@@ -1,82 +1,131 @@
-<div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
 
   <!-- Hero -->
-  <section class="text-center mb-14">
-    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 mb-6">
-      <span class="text-4xl">🔐</span>
+  <section class="text-center mb-20">
+    <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-green-100 mb-8">
+      <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+      </svg>
     </div>
-    <h1 class="text-4xl font-bold text-gray-900 mb-4">Sécurisez vos documents PDF</h1>
-    <p class="text-gray-500 text-lg max-w-xl mx-auto mb-8 leading-relaxed">
-      Appliquez des restrictions de protection sur vos PDF : interdire la copie, l'impression,
-      les modifications. Ajoutez un mot de passe. Gratuitement, sans inscription.
+    <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-5 leading-tight">
+      Sécurisez vos documents PDF
+    </h1>
+    <p class="text-gray-500 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+      Appliquez des restrictions sur vos PDF : interdire la copie, l'impression, les modifications.
+      Ajoutez un mot de passe et un chiffrement militaire. Gratuitement, sans inscription.
     </p>
     <a routerLink="/proteger"
-       class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors text-lg">
-      Sécuriser un PDF maintenant →
+       class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3.5 rounded-xl transition-colors text-base shadow-sm">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+      </svg>
+      Sécuriser un PDF maintenant
     </a>
   </section>
 
-  <!-- Options disponibles -->
-  <section class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex gap-4 items-start">
-      <span class="text-2xl">🚫</span>
+  <!-- Features -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 items-start">
+      <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"/>
+        </svg>
+      </div>
       <div>
-        <h3 class="font-semibold text-gray-800 mb-1">Interdire la copie</h3>
-        <p class="text-gray-500 text-sm">Le texte et les images ne peuvent pas être copiés depuis le document.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">Interdire la copie</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Le texte et les images ne peuvent pas être copiés depuis le document.</p>
       </div>
     </div>
-    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex gap-4 items-start">
-      <span class="text-2xl">🖨️</span>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 items-start">
+      <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z"/>
+        </svg>
+      </div>
       <div>
-        <h3 class="font-semibold text-gray-800 mb-1">Interdire l'impression</h3>
-        <p class="text-gray-500 text-sm">Le document ne peut pas être imprimé par le destinataire.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">Interdire l'impression</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Le document ne peut pas être imprimé par le destinataire.</p>
       </div>
     </div>
-    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex gap-4 items-start">
-      <span class="text-2xl">✏️</span>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 items-start">
+      <div class="w-10 h-10 rounded-xl bg-yellow-50 flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+        </svg>
+      </div>
       <div>
-        <h3 class="font-semibold text-gray-800 mb-1">Interdire les modifications</h3>
-        <p class="text-gray-500 text-sm">Le contenu du document ne peut pas être modifié.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">Interdire les modifications</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Le contenu du document ne peut pas être modifié.</p>
       </div>
     </div>
-    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex gap-4 items-start">
-      <span class="text-2xl">💬</span>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 items-start">
+      <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/>
+        </svg>
+      </div>
       <div>
-        <h3 class="font-semibold text-gray-800 mb-1">Interdire les annotations</h3>
-        <p class="text-gray-500 text-sm">Aucun commentaire ni annotation ne peut être ajouté.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">Interdire les annotations</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Aucun commentaire ni annotation ne peut être ajouté.</p>
       </div>
     </div>
-    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex gap-4 items-start">
-      <span class="text-2xl">🔑</span>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 items-start">
+      <div class="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/>
+        </svg>
+      </div>
       <div>
-        <h3 class="font-semibold text-gray-800 mb-1">Mot de passe d'ouverture</h3>
-        <p class="text-gray-500 text-sm">Le document ne peut être ouvert que par les personnes connaissant le mot de passe.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">Mot de passe d'ouverture</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Seules les personnes connaissant le mot de passe peuvent ouvrir le document.</p>
       </div>
     </div>
-    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex gap-4 items-start">
-      <span class="text-2xl">🛡️</span>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 items-start">
+      <div class="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+        </svg>
+      </div>
       <div>
-        <h3 class="font-semibold text-gray-800 mb-1">Chiffrement AES-256</h3>
-        <p class="text-gray-500 text-sm">Chiffrement militaire pour une protection maximale de vos données.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">Chiffrement AES-256</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Chiffrement militaire pour une protection maximale de vos données.</p>
       </div>
     </div>
+
   </section>
 
   <!-- Garanties -->
-  <section class="bg-gray-900 rounded-2xl p-6 sm:p-8 text-white">
-    <h2 class="text-xl font-bold mb-4">🔒 Vos données sont en sécurité</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-300">
-      <div class="flex gap-2 items-start">
-        <span class="text-green-400 font-bold mt-0.5">✓</span>
-        <span>Fichiers supprimés immédiatement après traitement</span>
+  <section class="bg-gray-900 rounded-2xl p-8 sm:p-10">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+      </svg>
+      <h2 class="text-white font-bold text-lg">Vos données sont en sécurité</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="flex gap-3 items-start">
+        <svg class="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
+        </svg>
+        <span class="text-gray-300 text-sm">Fichiers supprimés immédiatement après traitement</span>
       </div>
-      <div class="flex gap-2 items-start">
-        <span class="text-green-400 font-bold mt-0.5">✓</span>
-        <span>Aucune donnée conservée sur nos serveurs</span>
+      <div class="flex gap-3 items-start">
+        <svg class="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/>
+        </svg>
+        <span class="text-gray-300 text-sm">Aucune donnée conservée sur nos serveurs</span>
       </div>
-      <div class="flex gap-2 items-start">
-        <span class="text-green-400 font-bold mt-0.5">✓</span>
-        <span>Transmission chiffrée HTTPS</span>
+      <div class="flex gap-3 items-start">
+        <svg class="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+        </svg>
+        <span class="text-gray-300 text-sm">Transmission chiffrée HTTPS</span>
       </div>
     </div>
   </section>
