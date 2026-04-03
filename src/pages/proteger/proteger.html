@@ -154,13 +154,15 @@
 
   <!-- Mot de passe -->
   <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-5">
-    <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-2">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/>
-      </svg>
-      Mot de passe d'ouverture
-      <span class="text-gray-400 font-normal normal-case text-xs">(optionnel)</span>
-    </h2>
+    <div class="flex items-center justify-between mb-1">
+      <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider flex items-center gap-2">
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/>
+        </svg>
+        Mot de passe
+      </h2>
+      <span class="text-gray-400 font-normal text-xs">(optionnel)</span>
+    </div>
     <p class="text-gray-400 text-xs mb-4">Si défini, le document ne pourra être ouvert qu'avec ce mot de passe</p>
 
     <div class="relative">
@@ -201,35 +203,35 @@
 
       <label class="relative cursor-pointer">
         <input type="radio" [(ngModel)]="chiffrement" value="aes256" class="sr-only" />
-        <div class="border-2 rounded-xl p-4 transition-all"
+        <div class="border-2 rounded-xl p-3 sm:p-4 transition-all"
              [class.border-green-500]="chiffrement === 'aes256'"
              [class.bg-green-50]="chiffrement === 'aes256'"
              [class.border-gray-200]="chiffrement !== 'aes256'">
           <div class="flex items-center gap-2 mb-1">
-            <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
             </svg>
-            <span class="font-bold text-gray-800">AES-256</span>
+            <span class="font-bold text-gray-800 text-sm">AES-256</span>
           </div>
           <span class="text-xs text-gray-500 block">Recommandé</span>
-          <span class="text-xs text-gray-400">Chiffrement militaire</span>
+          <span class="text-xs text-gray-400 whitespace-nowrap">Chiffrement militaire</span>
         </div>
       </label>
 
       <label class="relative cursor-pointer">
         <input type="radio" [(ngModel)]="chiffrement" value="aes128" class="sr-only" />
-        <div class="border-2 rounded-xl p-4 transition-all"
+        <div class="border-2 rounded-xl p-3 sm:p-4 transition-all"
              [class.border-green-500]="chiffrement === 'aes128'"
              [class.bg-green-50]="chiffrement === 'aes128'"
              [class.border-gray-200]="chiffrement !== 'aes128'">
           <div class="flex items-center gap-2 mb-1">
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
             </svg>
-            <span class="font-bold text-gray-800">AES-128</span>
+            <span class="font-bold text-gray-800 text-sm">AES-128</span>
           </div>
           <span class="text-xs text-gray-500 block">Standard</span>
-          <span class="text-xs text-gray-400">Compatible anciens lecteurs</span>
+          <span class="text-xs text-gray-400 whitespace-nowrap">Anciens lecteurs</span>
         </div>
       </label>
 
