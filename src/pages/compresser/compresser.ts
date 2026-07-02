@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnDestroy } from '@angular/core';
 import { SecurService } from '../../services/secur.service';
 
 @Component({
@@ -6,17 +6,38 @@ import { SecurService } from '../../services/secur.service';
   standalone: true,
   templateUrl: './compresser.html',
 })
-export class Compresser {
+export class Compresser implements OnDestroy {
   fichierSelectionne: File | null = null;
   isDragOver = signal(false);
   erreur = signal<string | null>(null);
   chargement = signal(false);
   tailleOriginale = signal<number | null>(null);
   tailleCompresse = signal<number | null>(null);
+  secondes = signal(0);
+
+  private timerInterval: ReturnType<typeof setInterval> | null = null;
 
   readonly TAILLE_MAX = 20 * 1024 * 1024;
 
   constructor(private securService: SecurService) {}
+
+  ngOnDestroy() { this.arreterTimer(); }
+
+  private demarrerTimer() {
+    this.secondes.set(0);
+    this.timerInterval = setInterval(() => this.secondes.update(s => s + 1), 1000);
+  }
+
+  private arreterTimer() {
+    if (this.timerInterval) { clearInterval(this.timerInterval); this.timerInterval = null; }
+  }
+
+  get labelChargement(): string {
+    const s = this.secondes();
+    if (s < 5) return 'Envoi du fichier…';
+    if (s < 20) return `Compression en cours… ${s}s`;
+    return `Toujours en cours… ${s}s — veuillez patienter`;
+  }
 
   onDragOver(event: DragEvent) { event.preventDefault(); this.isDragOver.set(true); }
   onDragLeave() { this.isDragOver.set(false); }
@@ -81,9 +102,11 @@ export class Compresser {
     this.chargement.set(true);
     this.tailleOriginale.set(null);
     this.tailleCompresse.set(null);
+    this.demarrerTimer();
 
     this.securService.compresser(this.fichierSelectionne).subscribe({
       next: (response) => {
+        this.arreterTimer();
         const orig = Number(response.headers.get('X-Taille-Originale'));
         const comp = Number(response.headers.get('X-Taille-Compresse'));
         this.tailleOriginale.set(orig || this.fichierSelectionne!.size);
@@ -101,6 +124,7 @@ export class Compresser {
         this.chargement.set(false);
       },
       error: (err) => {
+        this.arreterTimer();
         this.chargement.set(false);
         this.securService.parseErreurBlob(err).then(msg => this.erreur.set(msg));
       },

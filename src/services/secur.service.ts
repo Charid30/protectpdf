@@ -1,6 +1,10 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { timeout } from 'rxjs/operators';
 import { environment } from '../environments/environment';
+
+// 4 minutes — suffisant pour Ghostscript sur gros PDF via connexion mobile lente
+const TIMEOUT_MS = 4 * 60 * 1000;
 
 export interface OptionsSecurisation {
   motDePasseOuverture: string;
@@ -37,7 +41,7 @@ export class SecurService {
     return this.http.post(`${this.apiUrl}/securiser`, formData, {
       responseType: 'blob',
       observe: 'response',
-    });
+    }).pipe(timeout(TIMEOUT_MS));
   }
 
   compresser(fichier: File) {
@@ -46,7 +50,7 @@ export class SecurService {
     return this.http.post(`${this.apiUrl}/compresser`, formData, {
       responseType: 'blob',
       observe: 'response',
-    });
+    }).pipe(timeout(TIMEOUT_MS));
   }
 
   deverrouillerPDF(fichier: File, motDePasse: string) {
@@ -56,7 +60,7 @@ export class SecurService {
     return this.http.post(`${this.apiUrl}/deverrouiller-pdf`, formData, {
       responseType: 'blob',
       observe: 'response',
-    });
+    }).pipe(timeout(TIMEOUT_MS));
   }
 
   deverrouillerWord(fichier: File, motDePasse: string, connaitMotDePasse: boolean) {
@@ -67,14 +71,15 @@ export class SecurService {
     return this.http.post(`${this.apiUrl}/deverrouiller-word`, formData, {
       responseType: 'blob',
       observe: 'response',
-    });
+    }).pipe(timeout(TIMEOUT_MS));
   }
 
   soumettreJobBruteforce(fichier: File, email: string) {
     const formData = new FormData();
     formData.append('fichier', fichier);
     formData.append('email', email);
-    return this.http.post<{ jobId: string; message: string }>(`${this.apiUrl}/bruteforce-word`, formData);
+    return this.http.post<{ jobId: string; message: string }>(`${this.apiUrl}/bruteforce-word`, formData)
+      .pipe(timeout(TIMEOUT_MS));
   }
 
   verifierStatutJob(jobId: string) {
@@ -83,6 +88,9 @@ export class SecurService {
 
   /** Quand responseType est 'blob', les erreurs arrivent aussi en Blob — il faut les lire. */
   parseErreurBlob(err: any): Promise<string> {
+    if (err?.name === 'TimeoutError') {
+      return Promise.resolve('La connexion a pris trop de temps. Vérifiez votre connexion internet et réessayez avec un fichier plus petit.');
+    }
     const defaut = 'Une erreur est survenue. Veuillez réessayer.';
     if (err?.error instanceof Blob) {
       return err.error.text().then((text: string) => {
