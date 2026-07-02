@@ -114,12 +114,7 @@ export class Compresser implements OnDestroy {
 
         const blob = response.body!;
         const nomOriginal = this.fichierSelectionne!.name.replace(/\.pdf$/i, '');
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${nomOriginal}-compresse.pdf`;
-        a.click();
-        URL.revokeObjectURL(url);
+        this.securService.telechargerBlob(blob, `${nomOriginal}-compresse.pdf`);
 
         this.chargement.set(false);
       },

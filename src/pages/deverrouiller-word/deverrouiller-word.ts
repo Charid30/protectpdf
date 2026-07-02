@@ -156,10 +156,7 @@ export class DeverrouillerWord implements OnDestroy {
         next: (response) => {
           const blob = response.body!;
           const nomOriginal = this.fichierSelectionne!.name.replace(/\.(docx?|doc)$/i, '');
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url; a.download = `${nomOriginal}-deverrouille.${this.extensionFichier}`; a.click();
-          URL.revokeObjectURL(url);
+          this.securService.telechargerBlob(blob, `${nomOriginal}-deverrouille.${this.extensionFichier}`);
           this.chargement.set(false);
           this.succes.set(true);
         },

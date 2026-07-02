@@ -96,12 +96,7 @@ export class Fusionner {
     this.securService.fusionner(this.fichiers).subscribe({
       next: (response) => {
         const blob = response.body!;
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'document-fusionne.pdf';
-        a.click();
-        URL.revokeObjectURL(url);
+        this.securService.telechargerBlob(blob, 'document-fusionne.pdf');
         this.chargement.set(false);
         this.succes.set(true);
       },

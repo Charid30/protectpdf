@@ -78,12 +78,7 @@ export class DeverrouillerPDF {
       next: (response) => {
         const blob = response.body!;
         const nomOriginal = this.fichierSelectionne!.name.replace(/\.pdf$/i, '');
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${nomOriginal}-deverrouille.pdf`;
-        a.click();
-        URL.revokeObjectURL(url);
+        this.securService.telechargerBlob(blob, `${nomOriginal}-deverrouille.pdf`);
         this.chargement.set(false);
         this.succes.set(true);
       },

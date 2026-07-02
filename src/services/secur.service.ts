@@ -86,6 +86,25 @@ export class SecurService {
     return this.http.get<{ statut: string; etape: string; progression: number; motDePasse?: string }>(`${this.apiUrl}/bruteforce-word/${jobId}`);
   }
 
+  /**
+   * Téléchargement compatible mobile (iOS Safari bloque a.click() sur blob URL).
+   * On crée un lien temporaire, on le met dans le DOM, on clique, puis on nettoie.
+   */
+  telechargerBlob(blob: Blob, nomFichier: string): void {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = nomFichier;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    // Délai avant révocation — iOS a besoin de temps pour initier le téléchargement
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    }, 300);
+  }
+
   /** Quand responseType est 'blob', les erreurs arrivent aussi en Blob — il faut les lire. */
   parseErreurBlob(err: any): Promise<string> {
     if (err?.name === 'TimeoutError') {

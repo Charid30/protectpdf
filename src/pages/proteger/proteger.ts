@@ -115,13 +115,7 @@ export class Proteger {
         const blob = response.body!;
         const nomOriginal = this.fichierSelectionne!.name.replace(/\.pdf$/i, '');
         const nomFichier = `${nomOriginal}-securise.pdf`;
-
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = nomFichier;
-        a.click();
-        URL.revokeObjectURL(url);
+        this.securService.telechargerBlob(blob, nomFichier);
 
         this.securService.setResultat(nomFichier, options);
         this.chargement.set(false);
