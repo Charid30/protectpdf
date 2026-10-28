@@ -6,6 +6,7 @@ import { Compresser } from '../pages/compresser/compresser';
 import { DeverrouillerPDF } from '../pages/deverrouiller-pdf/deverrouiller-pdf';
 import { DeverrouillerWord } from '../pages/deverrouiller-word/deverrouiller-word';
 import { Fusionner } from '../pages/fusionner/fusionner';
+import { PdfVersExcel } from '../pages/pdf-vers-excel/pdf-vers-excel';
 import { NotFound } from '../pages/not-found/not-found';
 
 export const routes: Routes = [
@@ -16,5 +17,6 @@ export const routes: Routes = [
   { path: 'deverrouiller-pdf', component: DeverrouillerPDF },
   { path: 'deverrouiller-word', component: DeverrouillerWord },
   { path: 'fusionner', component: Fusionner },
+  { path: 'pdf-vers-excel', component: PdfVersExcel },
   { path: '**', component: NotFound },
 ];

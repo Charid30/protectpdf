@@ -53,6 +53,15 @@ export class SecurService {
     }).pipe(timeout(TIMEOUT_MS));
   }
 
+  convertirEnExcel(fichier: File) {
+    const formData = new FormData();
+    formData.append('fichier', fichier);
+    return this.http.post(`${this.apiUrl}/pdf-vers-excel`, formData, {
+      responseType: 'blob',
+      observe: 'response',
+    }).pipe(timeout(TIMEOUT_MS));
+  }
+
   deverrouillerPDF(fichier: File, motDePasse: string) {
     const formData = new FormData();
     formData.append('fichier', fichier);

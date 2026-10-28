@@ -79,6 +79,15 @@
               </span>
               Fusionner des PDFs
             </a>
+            <a routerLink="/pdf-vers-excel" (click)="fermerOutils()"
+               class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-colors">
+              <span class="w-6 h-6 rounded-md bg-teal-100 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3.5 h-3.5 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.5h16.5v15H3.75zM3.75 9.5h16.5M3.75 14.5h16.5M9.25 4.5v15"/>
+                </svg>
+              </span>
+              PDF vers Excel
+            </a>
           </div>
         }
       </div>
@@ -129,6 +138,10 @@
       <a routerLink="/fusionner" routerLinkActive="text-purple-400 bg-gray-800" (click)="fermerMenu()"
          class="flex items-center gap-2 text-gray-300 hover:text-white hover:bg-gray-800 font-medium text-sm px-3 py-2 rounded-lg transition-colors">
         <span class="w-2 h-2 rounded-full bg-purple-500"></span>Fusionner des PDFs
+      </a>
+      <a routerLink="/pdf-vers-excel" routerLinkActive="text-teal-400 bg-gray-800" (click)="fermerMenu()"
+         class="flex items-center gap-2 text-gray-300 hover:text-white hover:bg-gray-800 font-medium text-sm px-3 py-2 rounded-lg transition-colors">
+        <span class="w-2 h-2 rounded-full bg-teal-500"></span>PDF vers Excel
       </a>
     </nav>
   }
