@@ -110,6 +110,12 @@ export class SecurService {
     if (err?.name === 'TimeoutError') {
       return Promise.resolve('La connexion a pris trop de temps. Vérifiez votre connexion internet et réessayez avec un fichier plus petit.');
     }
+    // Statut 0 : la requête n'a jamais atteint le serveur (hors ligne, ou bloquée par une extension du navigateur)
+    if (err?.status === 0) {
+      return Promise.resolve(navigator.onLine
+        ? 'La requête a été bloquée par votre navigateur. Désactivez votre bloqueur de publicités (ou la protection contre le suivi) pour ce site, ou réessayez en navigation privée.'
+        : 'Vous semblez hors ligne. Vérifiez votre connexion internet puis réessayez.');
+    }
     const defaut = 'Une erreur est survenue. Veuillez réessayer.';
     if (err?.error instanceof Blob) {
       return err.error.text().then((text: string) => {
